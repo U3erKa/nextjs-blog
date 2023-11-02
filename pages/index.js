@@ -29,7 +29,7 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <h1>
-          Read <Link href="/posts/first-post">this page!</Link>
+          Read <Link href="/posts/ssg-ssr">this page!</Link>
         </h1>
         <p>
           “Hear this! I will kidnap Peach OVER and OVER until I pull it off! And
@@ -54,7 +54,7 @@ export default function Home({ allPostsData }) {
             <li className={utilStyles.listItem} key={id}>
               {title}
               <br />
-              {id}
+              <Link href={`/posts/${id}`}>{id}</Link>
               <br />
               {date}
             </li>
