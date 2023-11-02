@@ -2,8 +2,26 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Script from 'next/script';
 import Layout from '../../components/layout';
+import { getAllPostIds, getPostData } from '../../lib/posts';
 
-export default function FirstPost() {
+export async function getStaticProps({ params }) {
+  const postData = getPostData(params.id);
+  return {
+    props: {
+      postData,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = await getAllPostIds();
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export default function Post({ postData }) {
   return (
     <Layout>
       <Head>
@@ -20,6 +38,13 @@ export default function FirstPost() {
       <h2>
         <Link href="/">Back to home</Link>
       </h2>
+      <section>
+        {postData.title}
+        <br />
+        {postData.id}
+        <br />
+        {postData.date}
+      </section>
     </Layout>
   );
 }
