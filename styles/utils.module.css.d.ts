@@ -1,0 +1,10 @@
+export declare const borderCircle: string;
+export declare const colorInherit: string;
+export declare const heading2Xl: string;
+export declare const headingLg: string;
+export declare const headingMd: string;
+export declare const headingXl: string;
+export declare const lightText: string;
+export declare const list: string;
+export declare const listItem: string;
+export declare const padding1px: string;
