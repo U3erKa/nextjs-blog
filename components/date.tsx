@@ -1,6 +1,13 @@
+import type { FC } from 'react';
 import { parseISO, format } from 'date-fns';
 
-export default function Date({ dateString }) {
+type Props = {
+  dateString: string;
+};
+
+const Date = function ({ dateString }) {
   const date = parseISO(dateString);
   return <time dateTime={dateString}>{format(date, 'LLLL d, yyyy')}</time>;
-}
+} satisfies FC<Props>;
+
+export default Date;

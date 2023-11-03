@@ -2,17 +2,23 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import Date from '../components/date';
-import { getSortedPostsData } from '../lib/posts';
+import { getSortedPostsData, type PostData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
+import type { FC } from 'react';
+import type { GetStaticProps } from 'next';
 
-export async function getStaticProps() {
+type Props = {
+  allPostsData: Omit<PostData, 'contentHtml'>[];
+};
+
+export const getStaticProps = async function () {
   const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
     },
   };
-}
+} satisfies GetStaticProps;
 /*
 export async function getServerSideProps(context) {
   return {
@@ -22,7 +28,7 @@ export async function getServerSideProps(context) {
   };
 }
 */
-export default function Home({ allPostsData }) {
+const Home = function ({ allPostsData }) {
   return (
     <Layout home>
       <Head>
@@ -64,4 +70,6 @@ export default function Home({ allPostsData }) {
       </section>
     </Layout>
   );
-}
+} satisfies FC<Props>;
+
+export default Home;

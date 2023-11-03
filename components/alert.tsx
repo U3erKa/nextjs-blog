@@ -1,7 +1,13 @@
-import styles from './alert.module.css';
+import type { FC, ReactNode } from 'react';
 import { clsx } from 'clsx';
+import styles from './alert.module.css';
 
-export default function Alert({ children, type }) {
+type Props = {
+  children: ReactNode;
+  type: 'success' | 'error';
+};
+
+const Alert = function ({ children, type }) {
   return (
     <div
       className={clsx({
@@ -12,4 +18,6 @@ export default function Alert({ children, type }) {
       {children}
     </div>
   );
-}
+} satisfies FC<Props>;
+
+export default Alert;
